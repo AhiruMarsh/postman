@@ -1,0 +1,17 @@
+{
+  "name": "postman",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "yarn@4.6.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "postal-mime": "^2.4.3",
+    "typescript": "^5.5.2",
+    "wrangler": "^4.12.0"
+  }
+}

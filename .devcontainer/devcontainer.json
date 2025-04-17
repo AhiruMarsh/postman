@@ -1,0 +1,24 @@
+{
+  "name": "postman-cmn-workspace",
+  "image": "node:latest",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "vscode"
+    }
+  },
+  "onCreateCommand": "sudo chown -R vscode:vscode /workspaces/${localWorkspaceFolderBasename}",
+  "postStartCommand": "yarn install --frozen-lockfile",
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}_node_modules,target=/workspaces/${localWorkspaceFolderBasename}/node_modules,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
