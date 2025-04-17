@@ -44,18 +44,18 @@ export default {
         // DiscordにEmbed形式で通知を送信
         const embed: object = {
           title: subject,
-          //description: detail,
+          description: detail,
           fields: [],
           author: {
             name: sender,
           },
           footer: {
-            text: sendto,
+            text: "postman",
           },
           timestamp: new Date().toISOString(),
         };
 
-        await sendDiscordEmbedNotification(webhookURL, embed);
+        await sendDiscordEmbedNotification(sendto, webhookURL, embed);
       } else {
         console.log(`Webhook URL not found for ${sender}`);
       }
@@ -77,9 +77,13 @@ function truncateString(detail: string): string {
 }
 
 // DiscordにEmbedで通知するための関数
-async function sendDiscordEmbedNotification(webhookURL: string, embed: object) {
+async function sendDiscordEmbedNotification(
+  sendto: string,
+  webhookURL: string,
+  embed: object
+) {
   const payload = {
-    username: "postman-dev",
+    username: sendto,
     embeds: [embed],
   };
 
