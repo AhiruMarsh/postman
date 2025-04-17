@@ -1,6 +1,30 @@
+import PostalMine from "postal-mime";
+
+async function streamToArrayBuffer(
+  stream: ReadableStream<Uint8Array<ArrayBufferLike>>,
+  streamSize: number
+) {
+  let result = new Uint8Array(streamSize);
+  let bytesRead = 0;
+  const reader = stream.getReader();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+    result.set(value, bytesRead);
+    bytesRead += value.length;
+  }
+  return result;
+}
+
 export default {
   async email(message, env, ctx): Promise<void> {
     try {
+      const rawEmail = await streamToArrayBuffer(message.raw, message.rawSize);
+      const parser = new PostalMine();
+      const parsedEmail = await parser.parse(rawEmail);
+
       // 受信メールの送信元アドレス
       const sender: string = message.from;
 
@@ -8,10 +32,10 @@ export default {
       const sendto: string = message.to;
 
       // 受信メールのタイトル
-      const subject: string = `${message.headers.get("subject")}`;
+      const subject = parsedEmail.subject;
 
       // 受信メールの詳細
-      //const detail = await truncateString(message.html);
+      const detail = parsedEmail.text;
 
       // KVストアから送信先アドレスに一致するDiscord Webhook URLを取得
       const webhookURL: string = `${await env.kv_deliveryMaster.get(sendto)}`;
