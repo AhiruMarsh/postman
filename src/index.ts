@@ -7,7 +7,7 @@ interface Postman {
   detail: string;
 }
 
-const MAX_DETAIL_LENGTH = 5900;
+const MAX_DETAIL_LENGTH = 2040;
 
 async function streamToArrayBuffer(
   stream: ReadableStream<Uint8Array<ArrayBufferLike>>,
