@@ -33,6 +33,9 @@ async function streamToArrayBuffer(
           }`
         );
       }
+
+      result.set(value, bytesRead);
+      bytesRead += value.length;
     }
 
     // 実際に読み込んだサイズが期待サイズと異なる場合のチェック
