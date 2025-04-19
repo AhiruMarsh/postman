@@ -1,14 +1,29 @@
 {
-  "name": "postman-cmn-server-worker01",
+  "name": "postman-dev-server-worker01",
   "main": "src/index.ts",
   "compatibility_date": "2024-09-23",
+  "workers_dev": false,
+  "preview_urls": false,
   "observability": {
     "enabled": true
   },
   "kv_namespaces": [
+    // postman-dev-deliveryMaster-kv01
     {
       "binding": "kv_deliveryMaster",
-      "id": "fff58b2a0c724367887c989e5c724769"
+      "id": "4e226c7bba7d41ef88667a2503cd2e86"
     }
-  ]
+  ],
+  "env": {
+    "prd": {
+      "name": "postman-prd-server-worker01",
+      "kv_namespaces": [
+        // postman-prd-deliveryMaster-kv01
+        {
+          "binding": "kv_deliveryMaster",
+          "id": "cdd83170cee84b798ecf765a1c53448f"
+        }
+      ]
+    }
+  }
 }
