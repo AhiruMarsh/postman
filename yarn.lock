@@ -1305,10 +1305,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postal-mime@npm:^2.4.3":
-  version: 2.4.3
-  resolution: "postal-mime@npm:2.4.3"
-  checksum: 10c0/0d7b662449081b6e5044b267880498a36235caed4273ab252a3668611c85625ff1905245e150b3c8be2fe4399d4350f7c43b4632ba975a149043e097f006cb4b
+"postal-mime@npm:^2.7.4":
+  version: 2.7.4
+  resolution: "postal-mime@npm:2.7.4"
+  checksum: 10c0/836220ef876b8e3ae7236341a4fbff5b8bf6618952a1208966a4e3040c9f51c14572fa695b1863bd445e8d7894536d2eb4e5001f50795c3f7fbfe39c8946ba09
   languageName: node
   linkType: hard
 
@@ -1316,7 +1316,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "postman@workspace:."
   dependencies:
-    postal-mime: "npm:^2.4.3"
+    postal-mime: "npm:^2.7.4"
     typescript: "npm:^6.0.2"
     wrangler: "npm:^4.82.2"
   languageName: unknown
