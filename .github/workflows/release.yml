@@ -1,0 +1,39 @@
+# 特定ブランチ更新時、タグおよびReleaseを発行するためのAction
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+
+      - name: Determine version
+        id: version
+        run: |
+          PREFIX="v$(date +'%Y.%-m')"
+          LATEST=$(git tag --list "${PREFIX}.*" | sort -t. -k3 -n | tail -n1)
+          if [ -z "$LATEST" ]; then
+            VERSION="${PREFIX}.0"
+          else
+            MINOR=$(echo "$LATEST" | awk -F. '{print $NF}')
+            VERSION="${PREFIX}.$((MINOR + 1))"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Create tag and release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.version.outputs.version }}" \
+            --title "${{ steps.version.outputs.version }}" \
+            --generate-notes
