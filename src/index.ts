@@ -181,7 +181,7 @@ export default {
       const errorMessage = `Webhook URL not found for ${postman.dest_address}`;
       console.error(errorMessage);
 
-      throw new Error(errorMessage);
+      message.setReject("Address not allowed");
     }
   },
 } satisfies ExportedHandler<Env>;
