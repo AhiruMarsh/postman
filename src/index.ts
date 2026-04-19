@@ -11,7 +11,7 @@ const MAX_DETAIL_LENGTH = 2040;
 
 async function streamToArrayBuffer(
   stream: ReadableStream<Uint8Array<ArrayBufferLike>>,
-  streamSize: number
+  streamSize: number,
 ): Promise<Uint8Array> {
   let result = new Uint8Array(streamSize);
   let bytesRead = 0;
@@ -30,7 +30,7 @@ async function streamToArrayBuffer(
         throw new Error(
           `Stream exceeded expected size. Expected: ${streamSize}, Received at least: ${
             bytesRead + value.length
-          }`
+          }`,
         );
       }
 
@@ -41,7 +41,7 @@ async function streamToArrayBuffer(
     // 実際に読み込んだサイズが期待サイズと異なる場合のチェック
     if (bytesRead !== streamSize) {
       console.warn(
-        `Stream size mismatch. Expected: ${streamSize}, Actual: ${bytesRead}`
+        `Stream size mismatch. Expected: ${streamSize}, Actual: ${bytesRead}`,
       );
     }
   } catch (error) {
@@ -74,7 +74,7 @@ function truncateString(detail: string | null | undefined): string {
 async function sendDiscordEmbedNotification(
   sendto: string,
   webhookURL: string,
-  embed: object
+  embed: object,
 ) {
   const payload = {
     username: sendto,
@@ -144,7 +144,7 @@ export default {
     } catch (error) {
       console.error(
         `Failed to get webhook URL from KV for ${postman.dest_address}`,
-        error
+        error,
       );
       return;
     }
@@ -169,13 +169,19 @@ export default {
         await sendDiscordEmbedNotification(
           postman.dest_address,
           webhookURL,
-          embed
+          embed,
         );
       } catch (error) {
-        console.error("Failed to send Discord notification for", error);
+        const errorMessage = `Failed to send Discord notification for ${error}`;
+        console.error(errorMessage);
+
+        throw new Error(errorMessage);
       }
     } else {
-      console.warn(`Webhook URL not found for ${postman.dest_address}`);
+      const errorMessage = `Webhook URL not found for ${postman.dest_address}`;
+      console.error(errorMessage);
+
+      message.setReject("Address not allowed");
     }
   },
 } satisfies ExportedHandler<Env>;
