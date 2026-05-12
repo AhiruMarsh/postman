@@ -4,10 +4,11 @@
   "private": true,
   "packageManager": "yarn@4.6.0",
   "scripts": {
-    "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "deploy": "wrangler deploy",
+    "deploy:prd": "wrangler deploy --env prd"
   },
   "dependencies": {
     "postal-mime": "^2.7.4",
