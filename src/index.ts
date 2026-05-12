@@ -160,7 +160,10 @@ export default {
           name: postman.source_address,
         },
         footer: {
-          text: "postman",
+          text:
+            env.POSTMAN_ENV == "prd"
+              ? "postman"
+              : `postman (${env.POSTMAN_ENV})`,
         },
         timestamp: new Date().toISOString(),
       };
