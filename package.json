@@ -12,6 +12,6 @@
   "dependencies": {
     "postal-mime": "^2.7.5",
     "typescript": "^6.0.3",
-    "wrangler": "^4.118.0"
+    "wrangler": "^4.125.0"
   }
 }
