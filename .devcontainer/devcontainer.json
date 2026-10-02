@@ -1,11 +1,12 @@
 {
   "name": "postman-cmn-workspace",
-  "image": "node:latest",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "username": "vscode"
-    }
+    },
+    "ghcr.io/devcontainers/features/node:2": {}
   },
   "onCreateCommand": "sudo chown -R vscode:vscode /workspaces/${localWorkspaceFolderBasename}",
   "postStartCommand": "yarn install --frozen-lockfile",
