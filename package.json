@@ -10,7 +10,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "postal-mime": "^4.0.5",
+    "postal-mime": "^4.0.8",
     "typescript": "^7.0.2",
     "wrangler": "^4.149.0"
   }
