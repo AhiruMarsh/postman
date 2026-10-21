@@ -1,29 +1,41 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "postman-dev-server-worker01",
   "main": "src/index.ts",
   "compatibility_date": "2024-09-23",
   "workers_dev": false,
   "preview_urls": false,
   "observability": {
-    "enabled": true
+    "enabled": true,
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+    },
+  ],
+  "vars": {
+    "POSTMAN_ENV": "dev",
   },
   "kv_namespaces": [
     // postman-dev-deliveryMaster-kv01
     {
       "binding": "kv_deliveryMaster",
-      "id": "4e226c7bba7d41ef88667a2503cd2e86"
-    }
+      "id": "4e226c7bba7d41ef88667a2503cd2e86",
+    },
   ],
   "env": {
     "prd": {
       "name": "postman-prd-server-worker01",
+      "vars": {
+        "POSTMAN_ENV": "prd",
+      },
       "kv_namespaces": [
         // postman-prd-deliveryMaster-kv01
         {
           "binding": "kv_deliveryMaster",
-          "id": "cdd83170cee84b798ecf765a1c53448f"
-        }
-      ]
-    }
-  }
+          "id": "cdd83170cee84b798ecf765a1c53448f",
+        },
+      ],
+    },
+  },
 }
