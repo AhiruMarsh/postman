@@ -1,17 +1,20 @@
 {
   "name": "postman",
-  "version": "0.1.0",
+  "version": "2026.10.2",
   "private": true,
   "packageManager": "yarn@4.18.0",
   "scripts": {
-    "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "deploy": "wrangler deploy",
+    "deploy:prd": "wrangler deploy --env prd"
   },
   "dependencies": {
-    "postal-mime": "^4.0.0",
+    "postal-mime": "^4.0.8"
+  },
+  "devDependencies": {
     "typescript": "^7.0.2",
-    "wrangler": "^4.143.1"
+    "wrangler": "^4.151.1"
   }
 }
