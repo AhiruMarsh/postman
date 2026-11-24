@@ -8,8 +8,7 @@ interface Postman {
 }
 
 const MAX_DETAIL_LENGTH = 2040;
-const DEFAULT_AVATAR_URL =
-  "https://static.a-mar.sh/postman/logo/d78d0f96-2d93-4755-bbd8-2b5ab6ad0c59_128x128.png";
+const DEFAULT_AVATAR_URL = "https://static.a-mar.sh/logo/postman_128x128.png";
 
 async function streamToArrayBuffer(
   stream: ReadableStream<Uint8Array<ArrayBufferLike>>,
