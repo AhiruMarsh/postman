@@ -8,6 +8,7 @@ interface Postman {
 }
 
 const MAX_DETAIL_LENGTH = 2040;
+const DEFAULT_AVATAR_URL = "https://static.a-mar.sh/logo/postman_128x128.png";
 
 async function streamToArrayBuffer(
   stream: ReadableStream<Uint8Array<ArrayBufferLike>>,
@@ -78,6 +79,7 @@ async function sendDiscordEmbedNotification(
 ) {
   const payload = {
     username: sendto,
+    avatar_url: DEFAULT_AVATAR_URL,
     embeds: [embed],
   };
 
